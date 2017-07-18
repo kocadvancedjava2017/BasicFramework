@@ -19,6 +19,7 @@ public class BasicFramework extends JFrame {
         this.HEIGHT = height;
     }
 
+    //initialize variables, set up the window
     void init(){
         //initialize window size
         setBounds(0, 0, WIDTH, HEIGHT);
@@ -38,6 +39,7 @@ public class BasicFramework extends JFrame {
         setBackground(Color.GREEN);
     }
 
+    //draw all elements on screen
     private void draw(){
         //get canvas
         Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
@@ -50,14 +52,19 @@ public class BasicFramework extends JFrame {
         strategy.show();
     }
 
-
+    //main looping method
     public void run(){
+
+        //initialize variables
         init();
 
+        //loop
         while(true){
 
+            //draw every frame
             draw();
 
+            //sleep between frames to cap the framerate
             try{ Thread.sleep(1000/MAX_FPS); }
             catch (InterruptedException e){ e.printStackTrace(); }
 
@@ -65,7 +72,7 @@ public class BasicFramework extends JFrame {
 
     }
 
-
+    //entry point for application
     public static void main(String[] args){
         BasicFramework game = new BasicFramework(400, 300, 60);
         game.run();
